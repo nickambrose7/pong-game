@@ -96,7 +96,7 @@ function endofgame(){
     push();
       fill('blue');
       textSize(50);
-      text('Game Over', 300, 500);
+      text('ame Over', 300, 500);
       rect(300, 600, 300, 100); //blue rect
     pop();
 
