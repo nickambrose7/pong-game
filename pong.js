@@ -6,6 +6,7 @@ var ball_size = 20;
 var balldy = 5;
 var balldx = 5;
 
+
 var padx = 350;
 var pady = 990;
 var padw = 100;
@@ -14,6 +15,8 @@ var dxpad = 0;
 
 var game_over = false;
 var score = 0;
+var d = 5;
+
 
 
 function setup() {
@@ -50,10 +53,10 @@ function checkKeys(){
 
  
   if (keyIsDown(RIGHT_ARROW)){
-    dxpad = 8;
+    dxpad = 10;
   }
   else if (keyIsDown(LEFT_ARROW)){// allows for movement of the paddle
-    dxpad = -8;
+    dxpad = -10;
   }
   else{
     dxpad = 0;
@@ -64,18 +67,21 @@ function checkKeys(){
 function updateball(){
   yball += balldy;
   xball += balldx;
+  
+  
   if (yball > pady && xball >= padx && xball <= padx + padw){ // bounce off paddle
-    balldy = -5;
-    score += 1
+    balldy = -d;
+    score += 1;
+    d += (score / 4);
   }
   else if (yball < 0){ //top of screen bounce
-    balldy = 5;
+    balldy = d;
   }
   else if (xball > 800){ // right edge bounce
-    balldx = -5;
+    balldx = -d;
   }
   else if (xball < 0){ //left edge bounce
-    balldx = 5;
+    balldx = d;
   }
   else if (yball > 1000){ //ball is missed by the paddle and goes off the screen.
     game_over = true;
@@ -116,12 +122,7 @@ function endofgame(){
 
 }
 
-function updatedifficulty(){
-  if (score > 1){
-    balldy = balldy * 2;
-    balldx = balldx * 2;
-  }
-}
+
 
 
 
@@ -134,7 +135,7 @@ function draw() {
     checkKeys();
     updateball();
     updatepaddle();
-    updatedifficulty();
+    // updatedifficulty();
     paddle(padx, pady, padw, padh); 
  }
  else {
