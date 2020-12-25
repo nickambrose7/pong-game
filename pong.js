@@ -43,15 +43,7 @@ function paddle(x, y, w, h) {
 }
 
 function checkKeys(){
-  // if (keyIsPressed) {
-  //   balldy = 5; //animates ball when I press ANY key
-  // }
-
-  // if (keyIsDown(RIGHT_ARROW) || keyIsDown(LEFT_ARROW)){
-  //   balldy = 0; //stops animation once I start moving the paddle any direction 
-  // }
-
- 
+  
   if (keyIsDown(RIGHT_ARROW)){
     dxpad = 10;
   }
@@ -72,7 +64,7 @@ function updateball(){
   if (yball > pady && xball >= padx && xball <= padx + padw){ // bounce off paddle
     balldy = -d;
     score += 1;
-    d += (score / 4);
+    d += (score / 4); //controls difficulty
   }
   else if (yball < 0){ //top of screen bounce
     balldy = d;
@@ -135,7 +127,6 @@ function draw() {
     checkKeys();
     updateball();
     updatepaddle();
-    // updatedifficulty();
     paddle(padx, pady, padw, padh); 
  }
  else {
